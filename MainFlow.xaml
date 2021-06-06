@@ -1,0 +1,28 @@
+﻿<Page x:Class="Restik.MainFlow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Restik"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="1440"
+      Title="ChooseRole">
+
+    <Grid Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Column="0" x:Name="mainFlow" x:FieldModifier="public" Source="ChooseRole.xaml"/>
+        <Button  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SingUpClick">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="M31.5 0L0 31.5L31.5 63L38.9025 55.5975L14.8575 31.5L38.9025 7.4025L31.5 0Z" Fill="#0F9CEB" Opacity="0.63"/>
+                        <TextBlock Text="Регистрация" FontSize="50" FontWeight="DemiBold" Foreground="#0F9CEB" Margin="58,0,0,0"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Page>

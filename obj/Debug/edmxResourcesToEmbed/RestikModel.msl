@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RestikModelContainer" CdmEntityContainer="RestikEntities">
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="RestikModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="ClientId" ColumnName="client_id" />
+          <ScalarProperty Name="RestaurantId" ColumnName="restaurant_id" />
+          <ScalarProperty Name="NumberPerson" ColumnName="number_person" />
+          <ScalarProperty Name="ArrivalDatetime" ColumnName="arrival_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="RestikModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+          <ScalarProperty Name="Password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Creators">
+      <EntityTypeMapping TypeName="RestikModel.Creator">
+        <MappingFragment StoreEntitySet="Creator">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="name" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+          <ScalarProperty Name="Password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageInRestaurants">
+      <EntityTypeMapping TypeName="RestikModel.ImageInRestaurant">
+        <MappingFragment StoreEntitySet="ImageInRestaurant">
+          <ScalarProperty Name="ImagePath" ColumnName="image_path" />
+          <ScalarProperty Name="RestaurantId" ColumnName="restaurant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="RestikModel.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurant">
+          <ScalarProperty Name="Id" ColumnName="id" />
+          <ScalarProperty Name="CreatorId" ColumnName="creator_id" />
+          <ScalarProperty Name="Title" ColumnName="title" />
+          <ScalarProperty Name="Address" ColumnName="address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+          <ScalarProperty Name="Description" ColumnName="description" />
+          <ScalarProperty Name="NumberPlaces" ColumnName="number_places" />
+          <ScalarProperty Name="IsTerrace" ColumnName="is_terrace" />
+          <ScalarProperty Name="WorkSchedule" ColumnName="work_schedule" />
+          <ScalarProperty Name="StartWork" ColumnName="start_work" />
+          <ScalarProperty Name="EndWork" ColumnName="end_work" />
+          <ScalarProperty Name="Kitchen" ColumnName="kitchen" />
+          <ScalarProperty Name="Keywords" ColumnName="keywords" />
+          <ScalarProperty Name="AverageCheck" ColumnName="average_check" />
+          <ScalarProperty Name="Rating" ColumnName="rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4aef6dd78244e129d70b9510a630064" Name="Diagram1">
+        <EntityTypeShape EntityType="RestikModel.Booking" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestikModel.Client" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestikModel.Creator" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestikModel.ImageInRestaurant" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestikModel.Restaurant" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="RestikModel.FK_Booking_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RestikModel.FK_Booking_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="RestikModel.FK_Restaurant_Creator" ManuallyRouted="false" />
+        <AssociationConnector Association="RestikModel.FK_Image_Restaurant" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

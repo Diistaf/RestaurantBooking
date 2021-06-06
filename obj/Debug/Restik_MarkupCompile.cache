@@ -1,0 +1,20 @@
+﻿Restik
+
+
+winexe
+C#
+.cs
+C:\MyDoc\Технарь\Учебная практика\Restik\obj\Debug\
+Restik
+none
+false
+DEBUG;TRACE
+C:\MyDoc\Технарь\Учебная практика\Restik\App.xaml
+161004394957
+22052676055
+36-572481296
+191219496487
+ChooseRole.xaml;ClientBooking.xaml;CreateAccount.xaml;ClientListFlow.xaml;CreateClientBooking.xaml;CreateRestoran.xaml;CreatorListFlow.xaml;CreatorListFrame.xaml;CreatorListNullFrame.xaml;DeleteBooking.xaml;DeleteRestoran.xaml;MainFlow.xaml;PageHoster.xaml;RestikInfo.xaml;SavePasswordPage.xaml;StartScreen.xaml;
+
+True
+

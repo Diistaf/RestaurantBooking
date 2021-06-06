@@ -1,0 +1,323 @@
+﻿<Page x:Class="Restik.ClientListFlow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Restik"
+      xmlns:conventers="clr-namespace:Restik.Conventers"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="1440"
+      Title="ClientListFlow">
+
+    <Page.Resources>
+        <conventers:OnePathValueConventer x:Key="OnePathValueConventer"/>
+        <conventers:TwoPathValueConventer x:Key="TwoPathValueConventer"/>
+        <conventers:ThreePathValueConventer x:Key="ThreePathValueConventer"/>
+    </Page.Resources>
+    <Grid Background="#FFFFFF">
+        <StackPanel>
+            <Grid Height="80" VerticalAlignment="Top" Margin="32.5,10,50,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="600"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <StackPanel x:Name="Weather" Width="55" Height="55" Margin="0,0,10,0">
+                        <Image x:Name="IconWeather" Source="{Binding .}" HorizontalAlignment="Center" Width="40"/>
+                        <TextBlock Text="{Binding Main.Temp, StringFormat='{}{0:0} °C'}" HorizontalAlignment="Center" FontSize="12" FontWeight="Light"/>
+                    </StackPanel>
+                    <TextBlock Text="Рестораны" Foreground="#212121" FontSize="53" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button Margin="60,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40" Padding="0" Click="ReloadList">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Path Data="M31.6033 10.8915V12.3915C32.1751 12.3915 32.6972 12.0664 32.9494 11.5533L31.6033 10.8915ZM24 9.39148C23.1716 9.39148 22.5 10.063 22.5 10.8915C22.5 11.7199 23.1716 12.3915 24 12.3915V9.39148ZM35.8461 5.66183C36.2116 4.9184 35.9053 4.01942 35.1618 3.6539C34.4184 3.28838 33.5194 3.59474 33.1539 4.33817L35.8461 5.66183ZM17.6202 31.7403C9.82181 31.7403 3.5 25.4185 3.5 17.6202H0.5C0.5 27.0754 8.16495 34.7403 17.6202 34.7403V31.7403ZM3.5 17.6202C3.5 9.82181 9.82181 3.5 17.6202 3.5V0.5C8.16495 0.5 0.5 8.16496 0.5 17.6202H3.5ZM17.6202 3.5C21.6224 3.5 24.1641 4.60312 25.9839 6.07883C27.8601 7.60031 29.0774 9.59458 30.3167 11.6626L32.89 10.1204C31.681 8.1031 30.2201 5.65164 27.8735 3.7487C25.4704 1.79998 22.2447 0.5 17.6202 0.5V3.5ZM30.2614 23.919C27.9444 28.559 23.1524 31.7403 17.6202 31.7403V34.7403C24.3327 34.7403 30.1402 30.8769 32.9453 25.2593L30.2614 23.919ZM31.6033 9.39148H24V12.3915H31.6033V9.39148ZM32.9494 11.5533L35.8461 5.66183L33.1539 4.33817L30.2572 10.2296L32.9494 11.5533Z" 
+                                      Fill="#4BB9F8"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Border CornerRadius="4" BorderBrush="#DADADA" BorderThickness="1" UseLayoutRounding="True" Height="56" Width="473" Grid.Column="0" VerticalAlignment="Center" Padding="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="FilterSearch" FontSize="22" FontWeight="Medium" Grid.Column="0" KeyUp="FilterKeyUp" BorderThickness="0" Margin="23,10,0,6"/>
+                            <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Padding="0">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Path Data="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" 
+                                              Fill="#323232" VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" MouseUp="OpenClientProfile" VerticalAlignment="Center"
+                                         Width="80"
+                                         CornerRadius="40"
+                                         Height="80"
+                                         Background="#4BB9F8">
+                        <TextBlock x:Name="clientName" Text="ВИ" FontSize="26" FontWeight="Medium" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid Height="60" VerticalAlignment="Top" Margin="50,0,50,50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="326"/>
+                    <ColumnDefinition x:Name="TimeFilterColumn" Width="90"/>
+                    <ColumnDefinition Width="260"/>
+                    <ColumnDefinition Width="301"/>
+                    <ColumnDefinition Width="162"/>
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.Column="0" Height="25" Width="25" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Path Data="M15.6699 9.13C17.0399 10.06 17.9999 11.32 17.9999 13V16H20.9999C21.5499 16 21.9999 15.55 21.9999 15V13C21.9999 10.82 18.4299 9.53 15.6699 9.13Z" 
+                          Fill="#007CC2"/>
+                    <Path Data="M8 8C10.2091 8 12 6.20914 12 4C12 1.79086 10.2091 0 8 0C5.79086 0 4 1.79086 4 4C4 6.20914 5.79086 8 8 8Z" 
+                          Fill="#007CC2"/>
+                    <Path Data="M13.9999 8C16.2099 8 17.9999 6.21 17.9999 4C17.9999 1.79 16.2099 0 13.9999 0C13.5299 0 13.0899 0.0999998 12.6699 0.24C13.4999 1.27 13.9999 2.58 13.9999 4C13.9999 5.42 13.4999 6.73 12.6699 7.76C13.0899 7.9 13.5299 8 13.9999 8Z"
+                          Fill="#007CC2"/>
+                    <Path Data="M8 9C5.33 9 0 10.34 0 13V15C0 15.55 0.45 16 1 16H15C15.55 16 16 15.55 16 15V13C16 10.34 10.67 9 8 9Z" 
+                          Fill="#007CC2"/>
+                </Canvas>
+                <Border Grid.Column="1" CornerRadius="16" BorderBrush="#DADADA" BorderThickness="1" UseLayoutRounding="True" Height="57" Width="291" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBox x:Name="FilterCountPerson" FontSize="22" KeyUp="FilterKeyUp" FontWeight="Medium" BorderThickness="0" Margin="23,15"/>
+                </Border>
+                <Border x:Name="TimeBookingBorder" Mouse.MouseUp="TimeBookingBorderFilter"
+                        VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2"
+                         Width="53"
+                         CornerRadius="26.5"
+                         Height="53"
+                         Background="#4BB9F8">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="M14.985 0C6.705 0 0 6.72 0 15C0 23.28 6.705 30 14.985 30C23.28 30 30 23.28 30 15C30 6.72 23.28 0 14.985 0ZM15 27C8.37 27 3 21.63 3 15C3 8.37 8.37 3 15 3C21.63 3 27 8.37 27 15C27 21.63 21.63 27 15 27ZM15.75 7.5H13.5V16.5L21.375 21.225L22.5 19.38L15.75 15.375V7.5Z" 
+                                  Fill="white" Margin="11" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TimeBookingBox" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#FFFFFF" Background="#4BB9F8" FontWeight="Medium" Visibility="Hidden" KeyUp="TimeBookingBox_KeyUp" Margin="8"/>
+                    </StackPanel>
+                </Border>
+                <Border VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="3"
+                         Width="234"
+                         CornerRadius="26.5"
+                         Height="53"
+                         Background="#4BB9F8">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Grid">
+                                <EventSetter Event="MouseUp" Handler="ClickOnComboBoxFilterRightNow"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Grid Margin="24,0,16,0">
+                            <Image Source="Assets/ComboBox_unchecked_White.png"
+                               Width="25"/>
+                            <Image Source="Assets/ComboBox_checked_White.png"
+                               Width="25"
+                               Visibility="Hidden"/>
+                        </Grid>
+                        <TextBlock VerticalAlignment="Center" Text="ПРЯМО СЕЙЧАС" FontSize="18" Foreground="#FFFFFF" FontWeight="Medium"/>
+                    </StackPanel>
+                </Border>
+                <Border VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="4"
+                         Width="275"
+                         CornerRadius="26.5"
+                         Height="53"
+                         Background="#4BB9F8">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Grid">
+                                <EventSetter Event="MouseUp" Handler="ClickOnComboBoxFilterTerrace"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Grid Margin="24,0,16,0">
+                            <Image Source="Assets/ComboBox_unchecked_White.png"
+                               Width="25"/>
+                            <Image Source="Assets/ComboBox_checked_White.png"
+                               Width="25"
+                               Visibility="Hidden"/>
+                        </Grid>
+                        <TextBlock VerticalAlignment="Center" Text="ОТКРЫТАЯ ТЕРАССА" FontSize="18" Foreground="#FFFFFF" FontWeight="Medium"/>
+                    </StackPanel>
+                </Border>
+                <Border VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="5"
+                         Width="162"
+                         CornerRadius="26.5"
+                         Height="53"
+                         Background="#4BB9F8">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Grid">
+                                <EventSetter Event="MouseUp" Handler="ClickOnComboBoxFilterUntilMorning"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Grid Margin="24,0,16,0">
+                            <Image Source="Assets/ComboBox_unchecked_White.png"
+                               Width="25"/>
+                            <Image Source="Assets/ComboBox_checked_White.png"
+                               Width="25"
+                               Visibility="Hidden"/>
+                        </Grid>
+                        <TextBlock VerticalAlignment="Center" Text="ДО УТРА" FontSize="18" Foreground="#FFFFFF" FontWeight="Medium"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid VerticalAlignment="Top" Margin="50,0,50,0">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="#212121"/>
+                        <Setter Property="FontSize" Value="21"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="119"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="115"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="190"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="510"/>
+                </Grid.RowDefinitions>
+
+
+                <Path x:Name="costSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="costSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Visibility="Hidden"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="ЦЕНА" MouseUp="CostSort"/>
+
+                <Path x:Name="nameSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="nameSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="НАЗВАНИЕ РЕСТОРАНА" MouseUp="NameSort"/>
+
+                <Path x:Name="addressSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="addressSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Visibility="Hidden"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="АДРЕС" MouseUp="AddressSort"/>
+
+                <Path x:Name="timeSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="timeSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Canvas Grid.Row="0" Grid.Column="3" Margin="45, 5, 0, 0" VerticalAlignment = "Stretch" MouseUp="TimeSort" >
+                    <Path Data="M12.9167 11.303C12.3115 11.303 11.8096 11.8049 11.8096 12.4101V19.3335C11.8096 19.8501 12.0753 20.3225 12.5034 20.5882L17.8767 23.8949C18.3639 24.1901 18.9986 24.0573 19.3086 23.5849C19.6481 23.083 19.4858 22.4039 18.9691 22.0939L14.0239 19.1268V12.4101C14.0239 11.8049 13.522 11.303 12.9167 11.303Z"
+                          Fill="#212121"/>
+                    <Path Data="M23.501 17.2078C23.5748 17.6949 23.619 18.1821 23.619 18.684C23.619 24.4411 19.0429 29.0173 13.2857 29.0173C7.52857 29.0173 2.95238 24.4411 2.95238 18.684C2.95238 12.9268 7.52857 8.35064 13.2857 8.35064C14.319 8.35064 15.3081 8.49825 16.2381 8.77873V5.73778C15.2933 5.51635 14.3043 5.39825 13.2857 5.39825C5.90476 5.39825 0 11.303 0 18.684C0 26.0649 5.90476 31.9697 13.2857 31.9697C20.6667 31.9697 26.5714 26.0649 26.5714 18.684C26.5714 18.1821 26.5419 17.6949 26.4829 17.2078H23.501Z" 
+                        Fill="#212121"/>
+                    <Path Data="M27.1829 4.17529L25.0952 6.26294L23.0076 4.17529C22.4335 3.60119 21.494 3.60119 20.9199 4.17529C20.3458 4.74939 20.3458 5.68883 20.9199 6.26294L23.0076 8.35059L20.9199 10.4382C20.3458 11.0123 20.3458 11.9518 20.9199 12.5259C21.494 13.1 22.4335 13.1 23.0076 12.5259L25.0952 10.4382L27.1829 12.5259C27.757 13.1 28.6964 13.1 29.2705 12.5259C29.8446 11.9518 29.8446 11.0123 29.2705 10.4382L27.1829 8.35059L29.2705 6.26294C29.8446 5.68883 29.8446 4.74939 29.2705 4.17529C28.6964 3.60119 27.757 3.60119 27.1829 4.17529Z" 
+                        Fill="#EB6E6E"/>
+                </Canvas>
+
+                <Path x:Name="numberPlacesSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="numberPlacesSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Visibility="Hidden"/>
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="МЕСТ" MouseUp="NumberPlacesSort"/>
+
+                <Path x:Name="ratingSortDown" Data="M8.5 1.5C8.5 0.947715 8.05228 0.5 7.5 0.5C6.94772 0.5 6.5 0.947715 6.5 1.5H8.5ZM6.79289 23.2071C7.18342 23.5976 7.81658 23.5976 8.20711 23.2071L14.5711 16.8431C14.9616 16.4526 14.9616 15.8195 14.5711 15.4289C14.1805 15.0384 13.5474 15.0384 13.1569 15.4289L7.5 21.0858L1.84315 15.4289C1.45262 15.0384 0.819456 15.0384 0.428932 15.4289C0.0384079 15.8195 0.0384079 16.4526 0.428932 16.8431L6.79289 23.2071ZM6.5 1.5V22.5H8.5V1.5H6.5Z" 
+                              Fill="#007CC2" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Path x:Name="ratingSortUp" Data="M6.5 22.5C6.5 23.0523 6.94772 23.5 7.5 23.5C8.05228 23.5 8.5 23.0523 8.5 22.5H6.5ZM8.20711 0.792892C7.81658 0.402369 7.18342 0.402369 6.79289 0.792892L0.428932 7.15685C0.0384078 7.54738 0.0384078 8.18054 0.428932 8.57107C0.819457 8.96159 1.45262 8.96159 1.84315 8.57107L7.5 2.91421L13.1569 8.57107C13.5474 8.96159 14.1805 8.96159 14.5711 8.57107C14.9616 8.18054 14.9616 7.54738 14.5711 7.15685L8.20711 0.792892ZM8.5 22.5L8.5 1.5H6.5L6.5 22.5H8.5Z" 
+                            Fill="#007CC2" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" Visibility="Hidden"/>
+                <TextBlock Grid.Row="0" Grid.Column="5" Text="РЕЙТИНГ" MouseUp="RatingSort"/>
+                
+                <Rectangle Grid.Row="1" Grid.ColumnSpan="6" Fill="#99DAFF"/>
+
+                <ListView x:Name="listRestorans" Grid.Row="2" Grid.ColumnSpan="6" BorderThickness="0" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="listRestorans_SelectionChanged">
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="listViewItemRestorans" TargetType="ListViewItem">
+                            <Grid x:Name="listViewElementGrid" Margin="2" Background="#FFFFFF">
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Foreground" Value="#212121"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="119"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="115"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="190"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15">
+                                    <Path x:Name="IconCost1"  Data="M9.93356 16.3745H5.51705V20H2.99899V16.3745H0.269984V14.2915H2.99899V12.4854H0.269984V10.4155H2.99899V0.804688H10.0786C12.1352 0.804688 13.7656 1.32764 14.9697 2.37354C16.1738 3.41943 16.7758 4.83447 16.7758 6.61865C16.7758 8.49072 16.1958 9.93652 15.0356 10.9561C13.8842 11.9668 12.2451 12.4766 10.1181 12.4854H5.51705V14.2915H9.93356V16.3745ZM5.51705 10.4155H10.0786C11.4409 10.4155 12.478 10.0947 13.1899 9.45312C13.9018 8.81152 14.2578 7.87549 14.2578 6.64502C14.2578 5.52881 13.8886 4.62793 13.1504 3.94238C12.4121 3.24805 11.4145 2.89648 10.1577 2.8877H5.51705V10.4155Z" 
+                                      VerticalAlignment="Center">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Setter Property="Fill" Value="#212121"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource OnePathValueConventer}}" Value="1">
+                                                        <Setter Property="Fill" Value="#007CC2"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                    <Path x:Name="IconCost2" Data="M9.93356 16.3745H5.51705V20H2.99899V16.3745H0.269984V14.2915H2.99899V12.4854H0.269984V10.4155H2.99899V0.804688H10.0786C12.1352 0.804688 13.7656 1.32764 14.9697 2.37354C16.1738 3.41943 16.7758 4.83447 16.7758 6.61865C16.7758 8.49072 16.1958 9.93652 15.0356 10.9561C13.8842 11.9668 12.2451 12.4766 10.1181 12.4854H5.51705V14.2915H9.93356V16.3745ZM5.51705 10.4155H10.0786C11.4409 10.4155 12.478 10.0947 13.1899 9.45312C13.9018 8.81152 14.2578 7.87549 14.2578 6.64502C14.2578 5.52881 13.8886 4.62793 13.1504 3.94238C12.4121 3.24805 11.4145 2.89648 10.1577 2.8877H5.51705V10.4155Z" 
+                                      VerticalAlignment="Center">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Setter Property="Fill" Value="#212121"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource TwoPathValueConventer}}" Value="2">
+                                                        <Setter Property="Fill" Value="#007CC2"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                    <Path x:Name="IconCost3" Data="M9.93356 16.3745H5.51705V20H2.99899V16.3745H0.269984V14.2915H2.99899V12.4854H0.269984V10.4155H2.99899V0.804688H10.0786C12.1352 0.804688 13.7656 1.32764 14.9697 2.37354C16.1738 3.41943 16.7758 4.83447 16.7758 6.61865C16.7758 8.49072 16.1958 9.93652 15.0356 10.9561C13.8842 11.9668 12.2451 12.4766 10.1181 12.4854H5.51705V14.2915H9.93356V16.3745ZM5.51705 10.4155H10.0786C11.4409 10.4155 12.478 10.0947 13.1899 9.45312C13.9018 8.81152 14.2578 7.87549 14.2578 6.64502C14.2578 5.52881 13.8886 4.62793 13.1504 3.94238C12.4121 3.24805 11.4145 2.89648 10.1577 2.8877H5.51705V10.4155Z" 
+                                      VerticalAlignment="Center">
+                                        <Path.Style>
+                                            <Style TargetType="Path">
+                                                <Setter Property="Fill" Value="#212121"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource ThreePathValueConventer}}" Value="3">
+                                                        <Setter Property="Fill" Value="#007CC2"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Path.Style>
+                                    </Path>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1" Text="{Binding Title}" FontSize="27" FontWeight="Medium" HorizontalAlignment="Left" Margin="60,0,0,0"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Address}" FontSize="23" FontWeight="Medium" HorizontalAlignment="Left" Margin="100,0,0,0"/>
+                                <TextBlock Grid.Column="3" Text="{Binding EndWork, StringFormat='hh\\:mm'}" FontSize="22" FontWeight="Medium"/>
+                                <TextBlock Grid.Column="4" Text="{Binding NumberPlaces}" FontSize="27" FontWeight="Bold" />
+                                <TextBlock Grid.Column="5" Text="{Binding Rating, StringFormat='{}{0:0.0}'}" FontSize="27" FontWeight="Bold" Foreground="#0DB446"/>
+                            </Grid>
+                        </ControlTemplate>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template" Value="{StaticResource listViewItemRestorans}"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel HorizontalAlignment="Stretch"
+                                        IsItemsHost="True">
+                            </StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

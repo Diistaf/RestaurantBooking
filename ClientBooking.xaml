@@ -1,0 +1,301 @@
+﻿<Page x:Class="Restik.ClientBooking"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Restik"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="1440"
+      Title="ClientBooking">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" Click="BackBtnClick" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Path Data="M14.5749 0L0 14.5749L14.5749 29.1498L18 25.7247L6.87449 14.5749L18 3.4251L14.5749 0Z" Fill="#0F9CEB" Opacity="0.63" Margin="0,17,0,0"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TextBlock Grid.Row="0"
+                   Grid.RowSpan="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="5"
+                   FontSize="64"
+                   Text="Мои бронирования"
+                   FontWeight="Medium"
+                   Margin="132,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+        <Border Grid.Row="0"
+                 Grid.RowSpan="2"
+                 Grid.Column="7"
+                 Margin="0,-50,20,0"
+                 CornerRadius="50"
+                 Width="100"
+                 Height="100"
+                 Background="#4BB9F8"
+                VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="4" BlurRadius="20"/>
+            </Border.Effect>
+            <TextBlock x:Name="clientName"
+                       Text="ВИ"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="35"
+                       FontWeight="Medium"/>
+        </Border>
+        <Button Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="6"
+                Click="ExitBtnClick">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border Height="38"
+                            Width="118"
+                            BorderBrush="#FF0000"
+                            Opacity="0.6"
+                            Margin="3,-50,3,0"
+                            BorderThickness="1.5"
+                            Padding="0"
+                            CornerRadius="3">
+                        <TextBlock Text="ВЫЙТИ"
+                                   Foreground="#FF0000"
+                                   FontSize="17"
+                                   Opacity="0.6"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Medium"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!--<Frame Grid.Row="1"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Grid.ColumnSpan="8"
+               Source="Page1.xaml"
+               Margin="0,30,0,0"
+                HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>-->
+
+        <ListView Grid.Row="2"
+                  Grid.RowSpan="6"
+                  Name="listBooking"
+                  Grid.Column="0"
+                  Margin="132,30,0,0"
+                  Grid.ColumnSpan="8"
+                  BorderThickness="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="Transparent" Margin="0,0,80,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="390"/>
+                            <ColumnDefinition Width="38"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="38"/>
+                            <RowDefinition Height="500"/>
+                            <RowDefinition Height="3"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.Resources>
+                            <Style TargetType="ToolTip">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ToolTip">
+                                            <ContentPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+
+                        <Border Background="White"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                CornerRadius="25">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" Direction="310" ShadowDepth="6" Opacity="0.2"/>
+                            </Border.Effect>
+                            <StackPanel Orientation="Vertical">
+                                <Border CornerRadius="25"
+                                        Height="296">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="Assets/Frame_36.png"
+                                                    Stretch="UniformToFill"/>
+                                    </Border.Background>
+                                </Border>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Margin="15,10,10,0" DataContext="{Binding Restaurant}">
+                                        <TextBlock  Text="{Binding Title}"
+                                                    FontSize="27"
+                                                    FontWeight="Medium"
+                                                    VerticalAlignment="Center"/>
+                                        <TextBlock Margin="0,0,10,0"
+                                                   Text="{Binding Address}"
+                                                   Foreground="#90000000"
+                                                   FontSize="15"/>
+                                    </StackPanel>
+
+                                    <Border Height="45"
+                                            Width="45"
+                                            Padding="8"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,25,30,0"
+                                            CornerRadius="4"
+                                            Background="#FFF"
+                                            BorderBrush="#4BB9F8"
+                                            BorderThickness="2.4"
+                                            DataContext="{Binding Restaurant}">
+                                        <Border.ToolTip>
+                                            <ToolTip>
+                                                <Border Background="#C7C7C7" CornerRadius="3" Padding="5">
+                                                    <TextBlock Text="{Binding PhoneNumber}" Foreground="#FFF" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ToolTip>
+                                        </Border.ToolTip>
+                                        <Image Source="Assets/Phone_icon.png"/>
+                                    </Border>
+                                </Grid>
+
+                                <StackPanel Orientation="Vertical"
+                                            Margin="15,15,10,10">
+
+                                    <Grid Margin="0,0,0,15">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="Assets/People.png"
+                                               Grid.Column="0"
+                                               Width="25"
+                                               Height="25"
+                                               Margin="0,0,19,0"/>
+                                        <TextBlock Text="{Binding StringFormat= '{}{0} чел.', Path=NumberPerson}"
+                                                   Grid.Column="1"
+                                                   FontSize="18"
+                                                   HorizontalAlignment="Left"
+                                                   FontWeight="Regular"
+                                                   Foreground="#000000"
+                                                   Opacity="0.81"/>
+                                    </Grid>
+
+                                    <Grid Margin="0,0,0,15">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="Assets/Time.png"
+                                               Grid.Column="0"
+                                               Width="25"
+                                               Height="25"
+                                               Margin="0,0,19,0"/>
+                                        <TextBlock Text="{Binding StringFormat=H:mm, Path=ArrivalDatetime}"
+                                                   Grid.Column="1"
+                                                   FontSize="18"
+                                                   HorizontalAlignment="Left"
+                                                   FontWeight="Regular"
+                                                   Foreground="#000000"
+                                                   Opacity="0.81"/>
+                                    </Grid>
+
+                                    <Grid Margin="0,0,0,15">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="Assets/Date_range.png"
+                                               Grid.Column="0"
+                                               Width="25"
+                                               Height="25"
+                                               Margin="0,0,19,0"/>
+                                        <TextBlock Text="{Binding StringFormat=dd.MM, Path=ArrivalDatetime}"
+                                                   Grid.Column="1"
+                                                   FontSize="18"
+                                                   FontWeight="Regular"
+                                                   Foreground="#000000"
+                                                   Opacity="0.81"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Border>
+
+                        <Button Grid.Row="0"
+                                Grid.RowSpan="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Click="DeleteBtnClick">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Height="76"
+                                            Width="76"
+                                            CornerRadius="38"
+                                            Background="#4BB9F8"
+                                            Padding="22">
+                                        <Image Source="Assets/Button_close.png"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

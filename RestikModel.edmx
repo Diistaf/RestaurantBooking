@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RestikModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+          <Property Name="number_person" Type="int" />
+          <Property Name="arrival_datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Creator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ImageInRestaurant">
+          <Key>
+            <PropertyRef Name="image_path" />
+            <PropertyRef Name="restaurant_id" />
+          </Key>
+          <Property Name="image_path" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="restaurant_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="creator_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="number_places" Type="int" />
+          <Property Name="is_terrace" Type="bit" />
+          <Property Name="work_schedule" Type="nvarchar" MaxLength="50" />
+          <Property Name="start_work" Type="time" Precision="7" />
+          <Property Name="end_work" Type="time" Precision="7" />
+          <Property Name="kitchen" Type="nvarchar" MaxLength="50" />
+          <Property Name="keywords" Type="nvarchar" MaxLength="50" />
+          <Property Name="average_check" Type="int" />
+          <Property Name="rating" Type="float" />
+        </EntityType>
+        <Association Name="FK_Booking_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="ImageInRestaurant" Type="Self.ImageInRestaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ImageInRestaurant">
+              <PropertyRef Name="restaurant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Creator">
+          <End Role="Creator" Type="Self.Creator" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Creator">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="creator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RestikModelContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Creator" EntityType="Self.Creator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageInRestaurant" EntityType="Self.ImageInRestaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_Client" Association="Self.FK_Booking_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Restaurant" Association="Self.FK_Booking_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Restaurant" Association="Self.FK_Image_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="ImageInRestaurant" EntitySet="ImageInRestaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Creator" Association="Self.FK_Restaurant_Creator">
+            <End Role="Creator" EntitySet="Creator" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+          <Property Name="NumberPerson" Type="Int32" />
+          <Property Name="ArrivalDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Booking_Client" FromRole="Booking" ToRole="Client" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Booking_Restaurant" FromRole="Booking" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Client" FromRole="Client" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="Creator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurant_Creator" FromRole="Creator" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="ImageInRestaurant">
+          <Key>
+            <PropertyRef Name="ImagePath" />
+            <PropertyRef Name="RestaurantId" />
+          </Key>
+          <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Image_Restaurant" FromRole="ImageInRestaurant" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatorId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPlaces" Type="Int32" />
+          <Property Name="IsTerrace" Type="Boolean" />
+          <Property Name="WorkSchedule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartWork" Type="Time" Precision="7" />
+          <Property Name="EndWork" Type="Time" Precision="7" />
+          <Property Name="Kitchen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AverageCheck" Type="Int32" />
+          <Property Name="Rating" Type="Double" />
+          <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Restaurant" FromRole="Restaurant" ToRole="Booking" />
+          <NavigationProperty Name="Creator" Relationship="Self.FK_Restaurant_Creator" FromRole="Restaurant" ToRole="Creator" />
+          <NavigationProperty Name="ImageInRestaurants" Relationship="Self.FK_Image_Restaurant" FromRole="Restaurant" ToRole="ImageInRestaurant" />
+        </EntityType>
+        <Association Name="FK_Booking_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Creator">
+          <End Role="Creator" Type="Self.Creator" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Creator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="ImageInRestaurant" Type="Self.ImageInRestaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImageInRestaurant">
+              <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestikEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bookings" EntityType="Self.Booking" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Creators" EntityType="Self.Creator" />
+          <EntitySet Name="ImageInRestaurants" EntityType="Self.ImageInRestaurant" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+          <AssociationSet Name="FK_Booking_Client" Association="Self.FK_Booking_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Restaurant" Association="Self.FK_Booking_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Creator" Association="Self.FK_Restaurant_Creator">
+            <End Role="Creator" EntitySet="Creators" />
+            <End Role="Restaurant" EntitySet="Restaurants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Restaurant" Association="Self.FK_Image_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="ImageInRestaurant" EntitySet="ImageInRestaurants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RestikModelContainer" CdmEntityContainer="RestikEntities">
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="RestikModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="ClientId" ColumnName="client_id" />
+                <ScalarProperty Name="RestaurantId" ColumnName="restaurant_id" />
+                <ScalarProperty Name="NumberPerson" ColumnName="number_person" />
+                <ScalarProperty Name="ArrivalDatetime" ColumnName="arrival_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="RestikModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Creators">
+            <EntityTypeMapping TypeName="RestikModel.Creator">
+              <MappingFragment StoreEntitySet="Creator">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageInRestaurants">
+            <EntityTypeMapping TypeName="RestikModel.ImageInRestaurant">
+              <MappingFragment StoreEntitySet="ImageInRestaurant">
+                <ScalarProperty Name="ImagePath" ColumnName="image_path" />
+                <ScalarProperty Name="RestaurantId" ColumnName="restaurant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="RestikModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="CreatorId" ColumnName="creator_id" />
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="Address" ColumnName="address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="phone_number" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="NumberPlaces" ColumnName="number_places" />
+                <ScalarProperty Name="IsTerrace" ColumnName="is_terrace" />
+                <ScalarProperty Name="WorkSchedule" ColumnName="work_schedule" />
+                <ScalarProperty Name="StartWork" ColumnName="start_work" />
+                <ScalarProperty Name="EndWork" ColumnName="end_work" />
+                <ScalarProperty Name="Kitchen" ColumnName="kitchen" />
+                <ScalarProperty Name="Keywords" ColumnName="keywords" />
+                <ScalarProperty Name="AverageCheck" ColumnName="average_check" />
+                <ScalarProperty Name="Rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

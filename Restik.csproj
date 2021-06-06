@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A77541D-990A-4503-8EB2-324E68A0E62D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Restik</RootNamespace>
+    <AssemblyName>Restik</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Booking.cs">
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseRole.xaml.cs">
+      <DependentUpon>ChooseRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientBooking.xaml.cs">
+      <DependentUpon>ClientBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Conventers\OnePathValueConventer.cs" />
+    <Compile Include="Conventers\ThreePathValueConventer.cs" />
+    <Compile Include="Conventers\TwoPathValueConventer.cs" />
+    <Compile Include="CreateAccount.xaml.cs">
+      <DependentUpon>CreateAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientListFlow.xaml.cs">
+      <DependentUpon>ClientListFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateClientBooking.xaml.cs">
+      <DependentUpon>CreateClientBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateRestoran.xaml.cs">
+      <DependentUpon>CreateRestoran.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Creator.cs">
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreatorListFlow.xaml.cs">
+      <DependentUpon>CreatorListFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreatorListFrame.xaml.cs">
+      <DependentUpon>CreatorListFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreatorListNullFrame.xaml.cs">
+      <DependentUpon>CreatorListNullFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBooking.xaml.cs">
+      <DependentUpon>DeleteBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteRestoran.xaml.cs">
+      <DependentUpon>DeleteRestoran.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageInRestaurant.cs">
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainFlow.xaml.cs">
+      <DependentUpon>MainFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant.cs">
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestikInfo.xaml.cs">
+      <DependentUpon>RestikInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RestikModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestikModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestikModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestikModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestikModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestikModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SavePasswordPage.xaml.cs">
+      <DependentUpon>SavePasswordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartScreen.xaml.cs">
+      <DependentUpon>StartScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validations\FieldRule.cs" />
+    <Compile Include="Validations\PasswordRule.cs" />
+    <Compile Include="Validations\PhoneNumberRule.cs" />
+    <Compile Include="WeatherResponse.cs" />
+    <Page Include="ChooseRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientListFlow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateClientBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateRestoran.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreatorListFlow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreatorListFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreatorListNullFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteRestoran.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainFlow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageHoster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RestikInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SavePasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PageHoster.xaml.cs">
+      <DependentUpon>PageHoster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="RestikModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestikModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RestikModel.edmx.diagram">
+      <DependentUpon>RestikModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\clear-cloudy.png" />
+    <Resource Include="Assets\cloudy.png" />
+    <Resource Include="Assets\cold.png" />
+    <Resource Include="Assets\drizzle.png" />
+    <Resource Include="Assets\foggy.png" />
+    <Resource Include="Assets\hail.png" />
+    <Resource Include="Assets\hot.png" />
+    <Resource Include="Assets\isolated-thunderstroms.png" />
+    <Resource Include="Assets\mostly-cloudy.png" />
+    <Resource Include="Assets\partly-cloudy.png" />
+    <Resource Include="Assets\showers.png" />
+    <Resource Include="Assets\sleet.png" />
+    <Resource Include="Assets\snow-flurries.png" />
+    <Resource Include="Assets\snow.png" />
+    <Resource Include="Assets\sunny.png" />
+    <Resource Include="Assets\thunderstroms.png" />
+    <Resource Include="Assets\tornado.png" />
+    <Resource Include="Assets\windy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\NotKnow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Button_close.png" />
+    <Resource Include="Assets\ComboBox_checked.png" />
+    <Resource Include="Assets\ComboBox_unchecked.png" />
+    <Resource Include="Assets\Date_range.png" />
+    <Resource Include="Assets\People.png" />
+    <Resource Include="Assets\Phone_icon.png" />
+    <Resource Include="Assets\radio_button_checked.png" />
+    <Resource Include="Assets\radio_button_unchecked.png" />
+    <Resource Include="Assets\Time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Frame_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ComboBox_checked_White.png" />
+    <Resource Include="Assets\ComboBox_unchecked_White.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ComboBox_unchecked_Red.png" />
+    <Content Include="RestikModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestikModel.edmx</DependentUpon>
+      <LastGenOutput>RestikModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RestikModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestikModel.edmx</DependentUpon>
+      <LastGenOutput>RestikModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

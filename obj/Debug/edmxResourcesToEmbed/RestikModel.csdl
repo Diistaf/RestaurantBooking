@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+    <Property Name="NumberPerson" Type="Int32" />
+    <Property Name="ArrivalDatetime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Booking_Client" FromRole="Booking" ToRole="Client" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_Booking_Restaurant" FromRole="Booking" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Client" FromRole="Client" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Creator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurant_Creator" FromRole="Creator" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="ImageInRestaurant">
+    <Key>
+      <PropertyRef Name="ImagePath" />
+      <PropertyRef Name="RestaurantId" />
+    </Key>
+    <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_Image_Restaurant" FromRole="ImageInRestaurant" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatorId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NumberPlaces" Type="Int32" />
+    <Property Name="IsTerrace" Type="Boolean" />
+    <Property Name="WorkSchedule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StartWork" Type="Time" Precision="7" />
+    <Property Name="EndWork" Type="Time" Precision="7" />
+    <Property Name="Kitchen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Keywords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AverageCheck" Type="Int32" />
+    <Property Name="Rating" Type="Double" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Booking_Restaurant" FromRole="Restaurant" ToRole="Booking" />
+    <NavigationProperty Name="Creator" Relationship="Self.FK_Restaurant_Creator" FromRole="Restaurant" ToRole="Creator" />
+    <NavigationProperty Name="ImageInRestaurants" Relationship="Self.FK_Image_Restaurant" FromRole="Restaurant" ToRole="ImageInRestaurant" />
+  </EntityType>
+  <Association Name="FK_Booking_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Restaurant">
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurant_Creator">
+    <End Role="Creator" Type="Self.Creator" Multiplicity="1" />
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Creator">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Restaurant">
+        <PropertyRef Name="CreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_Restaurant">
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="ImageInRestaurant" Type="Self.ImageInRestaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImageInRestaurant">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestikEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Creators" EntityType="Self.Creator" />
+    <EntitySet Name="ImageInRestaurants" EntityType="Self.ImageInRestaurant" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <AssociationSet Name="FK_Booking_Client" Association="Self.FK_Booking_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Restaurant" Association="Self.FK_Booking_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurant_Creator" Association="Self.FK_Restaurant_Creator">
+      <End Role="Creator" EntitySet="Creators" />
+      <End Role="Restaurant" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_Restaurant" Association="Self.FK_Image_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="ImageInRestaurant" EntitySet="ImageInRestaurants" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

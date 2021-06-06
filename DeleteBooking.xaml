@@ -1,0 +1,40 @@
+﻿<Window x:Class="Restik.DeleteBooking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Restik"
+        mc:Ignorable="d"
+        Title="DeleteBooking" Height="232" Width="561">
+    <Grid Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Отменить бронирование?" Margin="40,35" FontSize="26" FontWeight="Normal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackBtnClick">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <TextBlock Text="НАЗАД" FontSize="21" FontWeight="Normal" Opacity="0.6"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CancelBtnClick">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <TextBlock Text="ОТМЕНИТЬ" FontSize="21" FontWeight="Normal" Foreground="#4BB9F8"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

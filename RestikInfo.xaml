@@ -1,0 +1,158 @@
+﻿<Page x:Class="Restik.RestikInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Restik"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="1440"
+      Title="RestikInfo">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+        <Grid Background="White" Name="gridData">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="610"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="ToolTip">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ToolTip">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+
+            <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BackBtnClick">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Path Data="M14.5749 0L0 14.5749L14.5749 29.1498L18 25.7247L6.87449 14.5749L18 3.4251L14.5749 0Z" Fill="#0F9CEB" Opacity="0.63" Margin="0,70,0,0"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Orientation="Vertical"
+                        Margin="0,20,0,0">
+                <Border Height="52"
+                        Width="52"
+                        Padding="8"
+                        Margin="0,20,0,0"
+                        CornerRadius="4"
+                        Background="#FFF"
+                        BorderBrush="#4BB9F8"
+                        BorderThickness="2.4"
+                        MouseUp="WatchPlusMouseUp">
+                    <Canvas>
+                        <Path Data="M12.9167 8.85712C12.3115 8.85712 11.8096 9.35902 11.8096 9.96426V16.8876C11.8096 17.4043 12.0753 17.8766 12.5034 18.1424L17.8767 21.449C18.3639 21.7443 18.9986 21.6114 19.3086 21.139C19.6481 20.6371 19.4858 19.9581 18.9691 19.6481L14.0239 16.6809V9.96426C14.0239 9.35902 13.522 8.85712 12.9167 8.85712Z" Fill="#4BB9F8"/>
+                        <Path Data="M23.501 14.7619C23.5748 15.2491 23.619 15.7362 23.619 16.2381C23.619 21.9952 19.0429 26.5714 13.2857 26.5714C7.52857 26.5714 2.95238 21.9952 2.95238 16.2381C2.95238 10.481 7.52857 5.90477 13.2857 5.90477C14.319 5.90477 15.3081 6.05239 16.2381 6.33287V3.29192C15.2933 3.07049 14.3043 2.95239 13.2857 2.95239C5.90476 2.95239 0 8.85715 0 16.2381C0 23.6191 5.90476 29.5238 13.2857 29.5238C20.6667 29.5238 26.5714 23.6191 26.5714 16.2381C26.5714 15.7362 26.5419 15.2491 26.4829 14.7619H23.501Z" Fill="#4BB9F8"/>
+                        <Path Data="M29.5238 4.42857H26.5714V1.47619C26.5714 0.664286 25.9071 0 25.0952 0C24.2833 0 23.619 0.664286 23.619 1.47619V4.42857H20.6666C19.8547 4.42857 19.1904 5.09286 19.1904 5.90476C19.1904 6.71667 19.8547 7.38095 20.6666 7.38095H23.619V10.3333C23.619 11.1452 24.2833 11.8095 25.0952 11.8095C25.9071 11.8095 26.5714 11.1452 26.5714 10.3333V7.38095H29.5238C30.3357 7.38095 31 6.71667 31 5.90476C31 5.09286 30.3357 4.42857 29.5238 4.42857Z" Fill="#4BB9F8"/>
+                    </Canvas>
+                </Border>
+
+                <Border Height="52"
+                        Width="52"
+                        Margin="0,20,0,0"
+                        Padding="8"
+                        Background="#FFF"
+                        CornerRadius="4"
+                        BorderBrush="#4BB9F8"
+                        BorderThickness="2.4">
+                    <Border.ToolTip>
+                        <ToolTip>
+                            <Border Background="#C7C7C7" CornerRadius="3" Padding="5">
+                                <TextBlock Text="{Binding PhoneNumber}" Foreground="#FFF" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ToolTip>
+                    </Border.ToolTip>
+                    <Path Data="M21.6485 16.3663L18.255 15.9788C17.44 15.8853 16.6384 16.1659 16.0639 16.7404L13.6056 19.1986C9.82467 17.2748 6.7251 14.1886 4.80123 10.3943L7.27287 7.92261C7.84736 7.34812 8.12792 6.54651 8.0344 5.73154L7.64696 2.36476C7.48663 1.01538 6.35102 0 4.98827 0H2.67695C1.16725 0 -0.0886137 1.25586 0.00490785 2.76557C0.713 14.1752 9.83803 23.2869 21.2343 23.995C22.744 24.0885 23.9999 22.8326 23.9999 21.3229V19.0116C24.0132 17.6622 22.9979 16.5266 21.6485 16.3663Z" 
+                          Fill="#4BB9F8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Title}"
+                               FontSize="64"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Address}"
+                               FontSize="22"
+                               FontWeight="Regular"/>
+                </StackPanel>
+                <TextBlock Text="{Binding StringFormat='0.0', Path=Rating}"
+                           Foreground="#0DB446"
+                           FontSize="33"
+                           Margin="16,0,0,0"
+                           FontWeight="Bold"/>
+            </StackPanel>
+
+            <Border Grid.Row="0"
+                 Grid.Column="3"
+                 Margin="0,36,60,0"
+                 CornerRadius="50"
+                 Width="100"
+                 Height="100"
+                 Background="#4BB9F8"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Top"
+                 MouseUp="ClientMouseUp">
+                <TextBlock x:Name="clientName"
+                       Text="ВИ"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="35"
+                       FontWeight="Medium"/>
+            </Border>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <TextBlock TextWrapping="Wrap"
+                           Margin="0,35,0,0"
+                           FontSize="23"
+                           FontWeight="Regular"
+                           Text="{Binding Description}"/>
+                <Button Grid.Row="1" Grid.Column="1" Click="BookingClick" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Background="#4BB9F8" Width="600" Height="60" CornerRadius="4">
+                                <TextBlock Text="ЗАБРОНИРОВАТЬ" Foreground="#FFF" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <ListView x:Name="imageList"
+                      Grid.Row="1" Width="484"
+                      Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      Grid.ColumnSpan="2"
+                      BorderThickness="0"
+                      Margin="0,35,0,0">
+                <ListView.Resources>
+                    <ControlTemplate x:Key="listViewItemRestorans" TargetType="ListViewItem">
+                        <Image Source="{Binding ImagePath}" Height="484" Margin="0,0,0,44"/>
+                    </ControlTemplate>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template" Value="{StaticResource listViewItemRestorans}"/>
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+        </Grid>
+    </ScrollViewer>
+</Page>

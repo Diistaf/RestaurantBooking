@@ -1,0 +1,271 @@
+﻿<Page x:Class="Restik.CreateRestoran"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:conventers="clr-namespace:Restik.Conventers"
+      xmlns:local="clr-namespace:Restik"
+      mc:Ignorable="d" 
+      d:DesignHeight="2000" d:DesignWidth="1440"
+      Title="CreateRestoran">
+
+
+
+    <Page.Resources>
+        <Style x:Key="BorderTextBox" TargetType="Border">
+            <Setter Property="CornerRadius" Value="3.5"/>
+            <Setter Property="BorderBrush" Value="#DADADA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="UseLayoutRounding" Value="True"/>
+            <Setter Property="Height" Value="77"/>
+            <Setter Property="Width" Value="493"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style x:Key="StackPanelSpacing" TargetType="StackPanel">
+            <Setter Property="Margin" Value="0,15"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <conventers:OnePathValueConventer x:Key="OnePathValueConventer"/>
+        <conventers:TwoPathValueConventer x:Key="TwoPathValueConventer"/>
+        <conventers:ThreePathValueConventer x:Key="ThreePathValueConventer"/>
+    </Page.Resources>
+
+    <Grid x:Name="gridPPC" Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="0" Margin="125,80,0,0" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="23,0,20,0"/>
+                        <Setter Property="Opacity" Value="0.6"/>
+                        <Setter Property="FontSize" Value="28"/>
+                        <Setter Property="FontWeight" Value="Regular"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Grid.Column" Value="0"/>
+                        <Setter Property="FontSize" Value="28"/>
+                        <Setter Property="FontWeight" Value="Regular"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Opacity" Value="0"/>
+                        <Setter Property="Margin" Value="23,0,20,0"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <TextBlock Text="Заполните данные о ресторане" FontWeight="Bold" Opacity="1" Height="170" Width="593" FontSize="60" TextWrapping="Wrap" Margin="50,0,0,0" HorizontalAlignment="Left"/>
+                <TextBlock Text="Это необходимо для бронирования столиков" FontWeight="Normal" FontSize="20" TextWrapping="Wrap" Margin="50,0,0,0"/>
+
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseNameRestoran" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevNameRestoranText" Text="Название ресторана" VerticalAlignment="Center"/>
+                            <TextBox x:Name="NameRestoranText" Text="{Binding Title}" VerticalAlignment="Center" TextChanged="NameRestoranTextTextChanged" GotFocus="PrevNameRestoranFocus" LostFocus="PrevNameRestoranFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseInfoRestoran" Height="15" Width="15" Margin="0,37,35,0" VerticalAlignment="Top" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}" Height="289">
+                        <Grid>
+                            <TextBlock x:Name="PrevInfoRestoranText" Text="Это описание увидят пользователи, расскажите о своем месте" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <TextBox x:Name="InfoRestoranText" Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Top" Height="285" TextChanged="InfoRestoranTextTextChanged" GotFocus="InfoRestoranTextFocus" LostFocus="InfoRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseAddressRestoran" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevAddressRestoranText" Text="Адрес" VerticalAlignment="Center"/>
+                            <TextBox x:Name="AddressRestoranText" Text="{Binding Address}" VerticalAlignment="Center" TextChanged="AddressRestoranTextTextChanged" GotFocus="AddressRestoranTextFocus" LostFocus="AddressRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseCountPlaces" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevCountPlacesRestoranText" Text="Общее количество мест" VerticalAlignment="Center"/>
+                            <TextBox x:Name="CountPlacesRestoranText" Text="{Binding NumberPlaces}" VerticalAlignment="Center" TextChanged="CountPlacesRestoranTextTextChanged" GotFocus="CountPlacesRestoranTextFocus" LostFocus="CountPlacesRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseImageRestoran" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevImageRestoranText" Text="Изображение ресторана" VerticalAlignment="Center"/>
+                            <TextBox x:Name="ImageRestoranText" VerticalAlignment="Center" TextChanged="ImageRestoranTextTextChanged" GotFocus="ImageRestoranTextFocus" LostFocus="ImageRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+
+                    <Button Margin="20,-5" Width="88" Height="88" Click="ImageOpen">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Canvas>
+                                    <Rectangle Width="88" Height="88" RadiusX="6" RadiusY="6" Fill="#4BB9F8"/>
+                                    <Path Data="M65 60.2222V26.7778C65 24.15 62.85 22 60.2222 22H26.7778C24.15 22 22 24.15 22 26.7778V60.2222C22 62.85 24.15 65 26.7778 65H60.2222C62.85 65 65 62.85 65 60.2222ZM36.0944 48.23L41.1111 54.2739L48.5167 44.7422C48.9944 44.1211 49.95 44.1211 50.4278 44.7661L58.8128 55.9461C59.41 56.7344 58.8367 57.8572 57.8572 57.8572H29.2144C28.2111 57.8572 27.6617 56.7106 28.2828 55.9222L34.2311 48.2778C34.685 47.6567 35.5928 47.6328 36.0944 48.23Z" 
+                                            Fill="white"/>
+                                </Canvas>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipsePhoneNumber" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevPhoneNumberRestoranText" Text="Контактный номер" VerticalAlignment="Center"/>
+                            <TextBox x:Name="PhoneNumberRestoranText" Text="{Binding PhoneNumber}" VerticalAlignment="Center" TextChanged="PhoneNumberRestoranTextTextChanged" GotFocus="PhoneNumberRestoranTextFocus" LostFocus="PhoneNumberRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseTerrace" Height="15" Width="15" VerticalAlignment="Top" Margin="0,15,35,0" Fill="LightGray"/>
+                    <StackPanel>
+                        <TextBlock Text="Наличие террасы?" FontSize="30" FontWeight="Regular" Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.Resources>
+                                <Style x:Key="CustomRadioButton" TargetType="Image">
+                                    <EventSetter Event="MouseUp" Handler="CustomRadioButtonChange"/>
+                                    <Setter Property="Width" Value="22"/>
+                                    <Setter Property="Height" Value="22"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="37"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="37"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="TerraceTrueOff"
+                                   Style="{StaticResource CustomRadioButton}"
+                                   Source="Assets/radio_button_unchecked.png"
+                                   Grid.Column="0"/>
+                            <Image x:Name="TerraceTrueOn"
+                                   Style="{StaticResource CustomRadioButton}"
+                                   Source="Assets/radio_button_checked.png"
+                                   Visibility="Hidden"
+                                   Grid.Column="0"/>
+                            <TextBlock Text="Да" FontSize="26" FontWeight="Regular" Grid.Column="1"/>
+                            <Image x:Name="TerraceFalseOff"
+                                   Style="{StaticResource CustomRadioButton}"
+                                   Source="Assets/radio_button_unchecked.png"
+                                   Grid.Column="2"/>
+                            <Image x:Name="TerraceFalseOn"
+                                   Style="{StaticResource CustomRadioButton}"
+                                   Source="Assets/radio_button_checked.png"
+                                   Visibility="Hidden"
+                                   Grid.Column="2"/>
+                            <TextBlock Text="Нет" FontSize="26" FontWeight="Regular" Grid.Column="3"/>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseOperatingMode" Height="15" Width="15" VerticalAlignment="Top" Margin="0,15,35,0" Fill="LightGray"/>
+                    <StackPanel>
+                        <TextBlock Text="Режим работы" FontSize="30" FontWeight="Regular" Margin="0,0,0,40"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Style="{StaticResource BorderTextBox}" Width="205">
+                                <Grid>
+                                    <TextBlock x:Name="PrevOperatingModeStart" Text="Открытие" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="OperatingModeStartText" Text="{Binding StartWork}" VerticalAlignment="Center" TextChanged="OperatingModeStartTextTextChanged" GotFocus="OperatingModeStartTextFocus" LostFocus="OperatingModeStartTextFocus"/>
+                                </Grid>
+                            </Border>
+                            <Rectangle Width="18" Height="2" Fill="Black" Margin="32,0"/>
+                            <Border Style="{StaticResource BorderTextBox}" Width="205">
+                                <Grid>
+                                    <TextBlock x:Name="PrevOperatingModeEnd" Text="Закрытие" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="OperatingModeEndText" Text="{Binding EndWork}" VerticalAlignment="Center" TextChanged="OperatingModeEndTextTextChanged" GotFocus="OperatingModeEndTextFocus" LostFocus="OperatingModeEndTextFocus"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseKitchen" Height="15" Width="15" Margin="0,0,35,0" Fill="LightGray"/>
+                    <Border Style="{StaticResource BorderTextBox}">
+                        <Grid>
+                            <TextBlock x:Name="PrevKitchenRestoranText" Text="Кухня" VerticalAlignment="Center"/>
+                            <TextBox x:Name="KitchenRestoranText" Text="{Binding Kitchen}" VerticalAlignment="Center" TextChanged="KitchenRestoranTextTextChanged" GotFocus="KitchenRestoranTextFocus" LostFocus="KitchenRestoranTextFocus"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Style="{StaticResource StackPanelSpacing}">
+                    <Ellipse x:Name="EllipseTages" Height="15" Width="15" VerticalAlignment="Top" Margin="0,15,35,0" Fill="#19A964"/>
+                    <StackPanel>
+                        <TextBlock Text="Срений чек" FontSize="30" FontWeight="Regular" Margin="0,0,0,40"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Slider x:Name="SliderCost" Width="493" Minimum="1"  Value="{Binding AverageCheck}" Maximum="3" IsSelectionRangeEnabled="True"  SelectionEnd="{Binding AverageCheck}" 
+                                    IsSnapToTickEnabled="True" TickFrequency="1">
+                                <Slider.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#4BB9F8" />
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlDarkDarkBrushKey}" Color="#4BB9F8" Opacity="0.4"/>
+                                </Slider.Resources>
+                            </Slider>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15">
+                                <Path x:Name="CostPath1" Data="M10.1074 16.3745H5.69088V20H3.17282V16.3745H0.443812V14.2915H3.17282V12.4854H0.443812V10.4155H3.17282V0.804688H10.2524C12.309 0.804688 13.9394 1.32764 15.1435 2.37354C16.3476 3.41943 16.9497 4.83447 16.9497 6.61865C16.9497 8.49072 16.3696 9.93652 15.2094 10.9561C14.0581 11.9668 12.4189 12.4766 10.292 12.4854H5.69088V14.2915H10.1074V16.3745ZM5.69088 10.4155H10.2524C11.6147 10.4155 12.6518 10.0947 13.3637 9.45312C14.0756 8.81152 14.4316 7.87549 14.4316 6.64502C14.4316 5.52881 14.0625 4.62793 13.3242 3.94238C12.5859 3.24805 11.5883 2.89648 10.3315 2.8877H5.69088V10.4155Z" 
+                                      Margin="20,0,3,0">
+                                    <Path.Style>
+                                        <Style TargetType="Path">
+                                            <Setter Property="Fill" Value="#212121"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource OnePathValueConventer}}" Value="1">
+                                                    <Setter Property="Fill" Value="#007CC2"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Path.Style>
+                                </Path>
+                                <Path x:Name="CostPath2" Data="M10.1074 16.3745H5.69088V20H3.17282V16.3745H0.443812V14.2915H3.17282V12.4854H0.443812V10.4155H3.17282V0.804688H10.2524C12.309 0.804688 13.9394 1.32764 15.1435 2.37354C16.3476 3.41943 16.9497 4.83447 16.9497 6.61865C16.9497 8.49072 16.3696 9.93652 15.2094 10.9561C14.0581 11.9668 12.4189 12.4766 10.292 12.4854H5.69088V14.2915H10.1074V16.3745ZM5.69088 10.4155H10.2524C11.6147 10.4155 12.6518 10.0947 13.3637 9.45312C14.0756 8.81152 14.4316 7.87549 14.4316 6.64502C14.4316 5.52881 14.0625 4.62793 13.3242 3.94238C12.5859 3.24805 11.5883 2.89648 10.3315 2.8877H5.69088V10.4155Z" 
+                                      Margin="3,0">
+                                    <Path.Style>
+                                        <Style TargetType="Path">
+                                            <Setter Property="Fill" Value="#212121"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource TwoPathValueConventer}}" Value="2">
+                                                    <Setter Property="Fill" Value="#007CC2"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Path.Style>
+                                </Path>
+                                <Path x:Name="CostPath3" Data="M10.1074 16.3745H5.69088V20H3.17282V16.3745H0.443812V14.2915H3.17282V12.4854H0.443812V10.4155H3.17282V0.804688H10.2524C12.309 0.804688 13.9394 1.32764 15.1435 2.37354C16.3476 3.41943 16.9497 4.83447 16.9497 6.61865C16.9497 8.49072 16.3696 9.93652 15.2094 10.9561C14.0581 11.9668 12.4189 12.4766 10.292 12.4854H5.69088V14.2915H10.1074V16.3745ZM5.69088 10.4155H10.2524C11.6147 10.4155 12.6518 10.0947 13.3637 9.45312C14.0756 8.81152 14.4316 7.87549 14.4316 6.64502C14.4316 5.52881 14.0625 4.62793 13.3242 3.94238C12.5859 3.24805 11.5883 2.89648 10.3315 2.8877H5.69088V10.4155Z" 
+                                      Margin="3,0">
+                                    <Path.Style>
+                                        <Style TargetType="Path">
+                                            <Setter Property="Fill" Value="#212121"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding AverageCheck, Converter={StaticResource ThreePathValueConventer}}" Value="3">
+                                                    <Setter Property="Fill" Value="#007CC2"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Path.Style>
+                                </Path>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Border CornerRadius="4" MouseUp="Border_MouseUp" Background="#4BB9F8" Height="58" Width="493" Padding="0" HorizontalAlignment="Left" Margin="50,15">
+                    <TextBlock x:Name="endBorder" FontSize="17" FontWeight="DemiBold" 
+                                               VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="388" MouseUp="BackStackPanel">
+            <Path Data="M31.5 0L0 31.5L31.5 63L38.9025 55.5975L14.8575 31.5L38.9025 7.4025L31.5 0Z" Fill="#0F9CEB" Opacity="0.63" Margin="0,7,0,0"/>
+            <TextBlock x:Name="perehod" FontSize="50" FontWeight="DemiBold" Foreground="#0F9CEB" Margin="58,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Page>

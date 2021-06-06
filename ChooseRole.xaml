@@ -1,0 +1,79 @@
+﻿<Page x:Class="Restik.ChooseRole"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Restik"
+      mc:Ignorable="d" 
+      d:DesignHeight="830" d:DesignWidth="720"
+      Title="ChooseRole">
+
+    <Grid Background="#FFFFFF">
+        <StackPanel Background="White"
+                Orientation="Vertical"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style x:Key="CustomRadioButton" TargetType="Image">
+                    <EventSetter Event="MouseDown" Handler="RadioButtonLoad"/>
+                    <EventSetter Event="MouseUp" Handler="RadioButtonNavigate"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="40"/>
+                    <Setter Property="FontWeight" Value="Medium"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="RadioButtonTrueOff"
+                       Style="{StaticResource CustomRadioButton}"
+                       Source="Assets/radio_button_unchecked.png"
+                       Width="34"
+                       Height="34"
+                       Grid.Column="0"/>
+                    <Image x:Name="RadioButtonTrueOn"
+                       Style="{StaticResource CustomRadioButton}"
+                       Source="Assets/radio_button_checked.png"
+                       Width="34"
+                       Height="34"
+                       Visibility="Hidden"
+                       Grid.Column="0"/>
+                    <TextBlock Text="Хочу бронировать"
+                           Margin="15,0,0,0"
+                           Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="RadioButtonFalseOff"
+                           Style="{StaticResource CustomRadioButton}"
+                           Source="Assets/radio_button_unchecked.png"
+                           Width="34"
+                           Height="34"
+                           Grid.Column="0"/>
+                    <Image x:Name="RadioButtonFalseOn"
+                        Style="{StaticResource CustomRadioButton}"
+                        Source="Assets/radio_button_checked.png"
+                        Width="34"
+                        Height="34"
+                        Visibility="Hidden"
+                        Grid.Column="0"/>
+                    <TextBlock Text="Хочу добавить ресторан"
+                           Margin="15,0,0,0"
+                           Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
